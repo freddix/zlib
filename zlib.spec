@@ -1,7 +1,7 @@
 Summary:	Library for compression and decompression
 Name:		zlib
 Version:	1.2.8
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 Source0:	http://www.zlib.net/%{name}-%{version}.tar.gz
@@ -35,24 +35,18 @@ Static zlib libraries.
 
 %prep
 %setup -q
-%ifarch i686
-cp contrib/asm686/match.S .
-%endif
-%ifarch %{x8664}
-cp contrib/amd64/amd64-match.S match.S
-%endif
+
+grep -A 24 '^  Copyright' zlib.h > LICENSE
 
 %build
-CFLAGS="-D_REENTRANT -fPIC %{rpmcflags} -DASMV" \
-CC="%{__cc}"			\
+export CFLAGS="%{rpmcflags}"
+export CC="%{__cc}"
 ./configure			\
 	--prefix=%{_prefix}	\
 	--libdir=%{_libdir}	\
 	--sharedlibdir=%{_libdir}
 
-%{__make} \
-	OBJA=match.o	\
-	PIC_OBJA=match.lo
+%{__make}
 
 %check
 %{__make} -j1 test
@@ -66,8 +60,6 @@ install -d $RPM_BUILD_ROOT{/%{_lib},%{_includedir},%{_libdir},%{_mandir}/man3}
 
 install libz.a $RPM_BUILD_ROOT%{_libdir}
 install zutil.h $RPM_BUILD_ROOT%{_includedir}
-
-grep -A 24 '^  Copyright' zlib.h > LICENSE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
