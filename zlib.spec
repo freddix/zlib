@@ -1,20 +1,19 @@
-Summary:	Library for compression and decompression
+Summary:	A Massively Spiffy Yet Delicately Unobtrusive Compression Library
 Name:		zlib
 Version:	1.2.8
-Release:	2
+Release:	3
 License:	BSD
-Group:		Libraries
+Group:		Core/Libraries
 Source0:	http://www.zlib.net/%{name}-%{version}.tar.gz
 # Source0-md5:	44d667c142d7cda120332623eab69f40
 URL:		http://www.zlib.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The 'zlib' compression library provides in-memory compression and
-decompression functions, including integrity checks of the
-uncompressed data. This version of the library supports only one
-compression method (deflation) but other algorithms may be added later
-and will have the same stream interface.
+zlib is designed to be a free, general-purpose, legally unencumbered
+-- that is, not covered by any patents -- lossless data-compression
+library for use on virtually any computer hardware and operating
+system. The zlib data format is itself portable across platforms.
 
 %package devel
 Summary:	Header files and libraries for zlib development
@@ -22,8 +21,8 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
-This package contains the header files needed to develop programs that
-use these zlib.
+This package contains the header files and libraries needed
+to develop programs that use the zlib library.
 
 %package static
 Summary:	Static zlib libraries
