@@ -1,7 +1,7 @@
 Summary:	A Massively Spiffy Yet Delicately Unobtrusive Compression Library
 Name:		zlib
 Version:	1.2.8
-Release:	3
+Release:	5
 License:	BSD
 Group:		Core/Libraries
 Source0:	http://www.zlib.net/%{name}-%{version}.tar.gz
